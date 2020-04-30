@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
-use App\AccessType;
+use App\Enums\AccessType;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
@@ -29,7 +29,7 @@ class LoginController extends Controller
             ], 422);
         }
 
-        return $user->createToken(request()->device_name)->plainTextToken;
+        return response(['success' => true, 'token' => $user->createToken(request()->device_name)->plainTextToken]);
 
     }
 

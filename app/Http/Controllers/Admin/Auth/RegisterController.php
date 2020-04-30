@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
+use App\Enums\Action;
 use App\Http\Controllers\Controller;
-use App\Action;
 use App\Notifications\VerifyEmailNotification;
 use App\User;
 use App\UserHistory;

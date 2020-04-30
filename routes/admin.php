@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\Auth\PasswordResetController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,11 +21,18 @@ Route::post('v1/auth/login', LoginController::class);
 Route::group([
     'prefix' => '/v1/password/'
 ], function () {
-    Route::get('find/{token}', [App\Http\Controllers\Admin\PasswordResetController::class, 'find']);
-    Route::post('create', [App\Http\Controllers\Admin\PasswordResetController::class, 'create']);
-    Route::post('reset', [App\Http\Controllers\Admin\PasswordResetController::class, 'reset']);
+    Route::get('find/{token}', [PasswordResetController::class, 'find']);
+    Route::post('create', [PasswordResetController::class, 'create']);
+    Route::post('reset', [PasswordResetController::class, 'reset']);
 });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return 'logged in';
+
+Route::group(['middleware' => ['auth:sanctum', 'auth_admin'], 'prefix' => 'v1'], function () {
+
+    Route::group(['middleware' => 'role:super-admin', 'prefix' => 'management'], function () {
+        Route::get('users', [UserController::class, 'index']);
+        Route::post('users', [UserController::class, 'store']);
+        Route::post('users/{user_id}/update', [UserController::class, 'update']);
+        Route::delete('users/{user_id}/delete', [UserController::class, 'delete']);
+    });
 });

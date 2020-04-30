@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\User\Auth;
 
-use App\Action;
+
+use App\Enums\Action;
 use App\Http\Controllers\Controller;
 use App\Notifications\PasswordResetNotification;
 use App\Notifications\PasswordResetSuccessNotification;

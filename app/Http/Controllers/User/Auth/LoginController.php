@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\User\Auth;
 
-use App\AccessType;
-use App\Action;
+use App\Enums\AccessType;
+use App\Enums\Action;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\UserHistory;
@@ -33,7 +33,7 @@ class LoginController extends Controller
         UserHistory::create(['user_id' => $user->id, 'action' => Action::Login, 'ip' => request()->getClientIp()]);
 
 
-        return response(['success'=>true,'token'=>$user->createToken(request()->device_name)->plainTextToken]);
+        return response(['success' => true, 'token' => $user->createToken(request()->device_name)->plainTextToken]);
 
     }
 
