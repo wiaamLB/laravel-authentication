@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\PasswordResetController;
+use App\Http\Controllers\Admin\PagesController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\UsersAdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,11 +30,27 @@ Route::group([
 
 
 Route::group(['middleware' => ['auth:sanctum', 'auth_admin'], 'prefix' => 'v1'], function () {
+    Route::group(['middleware' => 'role:moderator|admin'], function () {
+        Route::get('users', [UserController::class, 'show']);
+        Route::get('pages/{id}', [PagesController::class, 'show']);
+
+    });
+
+    Route::group(['middleware' => 'role:editor|moderator|admin'], function () {
+        Route::get('pages', [PagesController::class, 'index']);
+    });
+    Route::group(['middleware' => 'role:editor|admin'], function () {
+        Route::post('pages', [PagesController::class, 'store']);
+    });
+    Route::group(['middleware' => 'role:editor|admin'], function () {
+        Route::delete('pages/{id}/delete', [PagesController::class, 'delete']);
+    });
+
 
     Route::group(['middleware' => 'role:super-admin', 'prefix' => 'management'], function () {
-        Route::get('users', [UserController::class, 'index']);
-        Route::post('users', [UserController::class, 'store']);
-        Route::post('users/{user_id}/update', [UserController::class, 'update']);
-        Route::delete('users/{user_id}/delete', [UserController::class, 'delete']);
+        Route::get('users', [UsersAdminController::class, 'index']);
+        Route::post('users', [UsersAdminController::class, 'store']);
+        Route::post('users/{user_id}/update', [UsersAdminController::class, 'update']);
+        Route::delete('users/{user_id}/delete', [UsersAdminController::class, 'delete']);
     });
 });

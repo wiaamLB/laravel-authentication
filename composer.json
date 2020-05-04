@@ -18,7 +18,8 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "spatie/laravel-permission": "^3.11",
-        "spatie/laravel-query-builder": "^2.8"
+        "spatie/laravel-query-builder": "^2.8",
+        "spatie/laravel-translatable": "^4.3"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

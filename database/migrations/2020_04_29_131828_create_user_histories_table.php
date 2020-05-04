@@ -20,6 +20,7 @@ class CreateUserHistoriesTable extends Migration
             $table->string('ip')->nullable();
             $table->string('action');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
