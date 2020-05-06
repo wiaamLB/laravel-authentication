@@ -16,10 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group(['prefix' => 'v1'], function () {
-    Route::post('/auth/login', LoginController::class);
-    Route::post('/register', [RegisterController::class, 'store']);
+    Route::post('/auth/login', LoginController::class)->name('api.authenticate');
+    Route::post('/register', [RegisterController::class, 'store'])->name('api.register');
 });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return 'qwe';
-});

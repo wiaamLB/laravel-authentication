@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
-
     use VerifiesEmails;
 
     public function store()
@@ -53,7 +52,7 @@ class RegisterController extends Controller
         UserHistory::create(['user_id' => $user->id, 'action' => Action::CreateProfile, 'ip' => request()->getClientIp()]);
 
 
-        $user->notify(new VerifyEmailNotification($user->first_name));
+       // $user->notify(new VerifyEmailNotification($user->first_name));
 
         return response(['status' => true, 'message' => $user]);
     }

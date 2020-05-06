@@ -15,8 +15,8 @@ class UserController extends Controller
 {
    public function show(){
        $users = QueryBuilder::for(User::class)
-           ->select('id', 'first_name', 'last_name', 'created_at', 'updated_at')
-           ->where(['access_type' => AccessType::USER])
+           ->select('id', 'first_name', 'last_name','email', 'created_at', 'updated_at')
+           ->where(['access_type' => AccessType::ADMIN])
            ->allowedFilters(['first_name', 'last_name','email'])
            ->defaultSort('-updated_at')
            ->allowedSorts(['id', 'first_name', 'last_name', 'created_at', 'updated_at'])

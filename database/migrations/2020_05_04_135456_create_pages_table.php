@@ -26,7 +26,6 @@ class CreatePagesTable extends Migration
             $table->string('image')->nullable();
             $table->string('image_thumb')->nullable();
             $table->boolean('active');
-            $table->boolean('active');
             $table->timestamps();
             $table->softDeletes();
         });
