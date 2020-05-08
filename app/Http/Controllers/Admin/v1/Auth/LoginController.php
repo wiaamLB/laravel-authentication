@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Auth;
+namespace App\Http\Controllers\Admin\v1\Auth;
 
 use App\Enums\AccessType;
 use App\Http\Controllers\Controller;

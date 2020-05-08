@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\v1;
 
 use App\Http\Controllers\Controller;
 use App\Setting;
@@ -10,7 +10,7 @@ class SettingsController extends Controller
 {
     public function index()
     {
-        return response(['success' => true, 'data' => Setting::first()]);
+        return response(['success' => true, 'data' => Setting::firstOrFail()]);
     }
 
     public function store()

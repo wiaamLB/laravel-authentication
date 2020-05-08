@@ -2,10 +2,7 @@
 
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\PasswordResetController;
-use App\Http\Controllers\Admin\PagesController;
-use App\Http\Controllers\Admin\SettingsController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\UsersAdminController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,13 +28,13 @@ Route::group([
 
 
 Route::group(['middleware' => ['auth:sanctum', 'auth_admin'], 'prefix' => 'v1'], function () {
-    Route::group(['middleware' => 'role:moderator|admin'], function () {
+    Route::group(['middleware' => 'role:moderator|admin|super-admin'], function () {
         Route::get('users', [UserController::class, 'show'])->name('admin.users.show');
         Route::get('pages/{id}', [PagesController::class, 'show'])->name('admin.pages.show');
 
     });
 
-    Route::group(['middleware' => 'role:editor|moderator|admin'], function () {
+    Route::group(['middleware' => 'role:editor|moderator|admin|super-admin'], function () {
         Route::get('pages', [PagesController::class, 'index'])->name('admin.pages.index');
         Route::get('settings', [SettingsController::class, 'index'])->name('admin.settings.index');
     });
@@ -45,7 +42,7 @@ Route::group(['middleware' => ['auth:sanctum', 'auth_admin'], 'prefix' => 'v1'],
         Route::post('pages', [PagesController::class, 'store'])->name('admin.pages.store');
         Route::post('settings', [SettingsController::class, 'store'])->name('admin.settings.store');
     });
-    Route::group(['middleware' => 'role:editor|admin'], function () {
+    Route::group(['middleware' => 'role:editor|admin|super-admin'], function () {
         Route::delete('pages/{id}/delete', [PagesController::class, 'delete'])->name('admin.pages.delete');
     });
 

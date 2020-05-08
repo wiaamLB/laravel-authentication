@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\v1;
 
 use App\Enums\AccessType;
 use App\Http\Controllers\Controller;

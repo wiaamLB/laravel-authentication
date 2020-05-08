@@ -18,6 +18,7 @@ class CreateSettingsTable extends Migration
             $table->text('social_media')->nullable();
             $table->text('contact_phone')->nullable();
             $table->text('contact_email')->nullable();
+            $table->text('others')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

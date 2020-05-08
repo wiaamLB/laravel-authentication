@@ -17,9 +17,9 @@ class CreatePagesTable extends Migration
             $table->bigIncrements('id');
             $table->text('title');
             $table->string('alias');
-            $table->text('page_title');
-            $table->text('description');
-            $table->text('content');
+            $table->text('page_title')->nullable();
+            $table->text('description')->nullable();
+            $table->text('content')->nullable();
             $table->text('meta_name')->nullable();
             $table->text('meta_content')->nullable();
             $table->text('keywords')->nullable();

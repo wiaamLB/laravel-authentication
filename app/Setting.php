@@ -10,7 +10,7 @@ class Setting extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['social_media','contact_phone','contact_email'];
+    protected $fillable = ['social_media','contact_phone','contact_email','others'];
 
     protected $casts = [
         'social_media' => 'array',
