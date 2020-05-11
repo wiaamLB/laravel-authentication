@@ -1,8 +1,12 @@
 <?php
 
-use App\Http\Controllers\Admin\Auth\LoginController;
-use App\Http\Controllers\Admin\Auth\PasswordResetController;
+use App\Http\Controllers\Admin\v1\Auth\PasswordResetController;
 
+use App\Http\Controllers\Admin\v1\Auth\LoginController;
+use App\Http\Controllers\Admin\v1\PagesController;
+use App\Http\Controllers\Admin\v1\SettingsController;
+use App\Http\Controllers\Admin\v1\UserController;
+use App\Http\Controllers\Admin\v1\UsersAdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
