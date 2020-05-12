@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\v1\AnalyticsController;
 use App\Http\Controllers\Admin\v1\Auth\PasswordResetController;
 
 use App\Http\Controllers\Admin\v1\Auth\LoginController;
@@ -39,6 +40,7 @@ Route::group(['middleware' => ['auth:sanctum', 'auth_admin'], 'prefix' => 'v1'],
     });
 
     Route::group(['middleware' => 'role:editor|moderator|admin|super-admin'], function () {
+        Route::get('analytics', [AnalyticsController::class, 'index']);
         Route::get('pages', [PagesController::class, 'index'])->name('admin.pages.index');
         Route::get('settings', [SettingsController::class, 'index'])->name('admin.settings.index');
     });
