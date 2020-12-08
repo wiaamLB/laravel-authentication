@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('v1/auth/login', LoginController::class);
+Route::post('v1/auth/login', LoginController::class)->middleware('recaptcha_cms');
 
 Route::group([
     'prefix' => '/v1/password/'
